@@ -2,10 +2,12 @@ var fetchLocation = function (dashElement, mapData) {
 
   var updateStatus = function(alertObj) {
     var alertTable = "<table>";
-    for (key in alertObj) {
-      alertTable += "<tr><td>" + key + "</td><td>" + alertObj[key] + "</td></tr>";
+    for (var key in alertObj) {
+      if (alertObj[key]) {
+        alertTable += "<tr><td>" + key + "</td><td>" + alertObj[key] + "</td></tr>";
+      }
     }
-    alertTable += "</table>"
+    alertTable += "</table>";
     dashElement.innerHTML = alertTable;
   };
 

@@ -15,6 +15,19 @@ var fetchLocation = function (dashElement, mapData) {
     mapData.currentLocation = new google.maps.LatLng(latitude, longitude);
     mapData.map.setCenter(mapData.currentLocation);
     mapData.marker.setPosition(mapData.currentLocation);
+    mapData.geocoder.geocode({'latLng': mapData.currentLocation}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+        if (results[1]) {
+          console.log(results[1].formatted_address);
+        }
+        else {
+          console.log("Fail");
+        }
+      }
+      else {
+        console.log("Fail");
+      }
+    });
   };
 
   var success = function(location) {

@@ -31,10 +31,12 @@
       currentLocation: null,
       mapOptions: null,
       map: null,
-      marker: null
+      marker: null,
+      geocoder: null
     };
 
     var createMap = function() {
+      mapData.geocoder = new google.maps.Geocoder();
       mapData.currentLocation = new google.maps.LatLng(12.9667, 77.5667);
       mapData.mapOptions = {
         zoom: 16,

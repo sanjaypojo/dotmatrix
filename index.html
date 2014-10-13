@@ -6,15 +6,21 @@
     <link href="style.css" type="text/css" rel="stylesheet">
   </head>
   <body>
-    <h1>Submit location</h1>
-    <p>
-      Click the post button to add your present location
-    </p>
-    <button id="post-location"> Post Location </button>
-    <p id="status-board"></p>
-    <br>
-    <h2> Map Location </h2>
-    <div id="map-canvas"></div>
+    <div class="wrapper">
+      <div id="post-data" class="widget left">
+        <h1>Submit location</h1>
+        <p>
+          Click the post button to add your present location
+        </p>
+        <button id="post-location"> Post Location </button>
+      </div>
+      <div id="status-board" class="widget right"></div>
+      <br>
+      <div class="clear-float" id="map-location">
+        <h2> Map Location </h2>
+        <div id="map-canvas"></div>
+      </div>
+    </div>
   </body>
   <script type="text/javascript">
     var dashElement = document.getElementById("status-board");

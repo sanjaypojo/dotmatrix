@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>Dotmatrix | Location</title>
+    <script src="main.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <h1>Submit location</h1>
+    <p>
+      Click the post button to add your present location
+    </p>
+    <button id="post-location"> Post Location </button>
+    <p id="status-board"></p>
+  </body>
+  <script type="text/javascript">
+    var dashElement = document.getElementById("status-board");
+    var postLocation = document.getElementById("post-location");
+    postLocation.onclick = function() {
+      console.log("Click event fired");
+      fetchLocation(dashElement);
+      return false;
+    };
+  </script>
+</html>

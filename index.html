@@ -1,0 +1,65 @@
+<html>
+  <head>
+    <title>Dotmatrix | Location</title>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="main.js" type="text/javascript"></script>
+    <link href="style.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="wrapper">
+      <div id="post-data" class="widget left">
+        <h1>Submit location</h1>
+        <p>
+          Click the post button to add your present location
+        </p>
+        <button id="post-location"> Post Location </button>
+      </div>
+      <div id="status-board" class="widget right"></div>
+      <br>
+      <div class="clear-float" id="map-location">
+        <h2> Map Location </h2>
+        <p>
+          Address: <span id="geocoder-address"></span>
+        </p>
+        <div id="map-canvas"></div>
+      </div>
+    </div>
+  </body>
+  <script type="text/javascript">
+    var dashElement = document.getElementById("status-board");
+    var mapElement = document.getElementById("map-canvas");
+    var addressElement = document.getElementById("geocoder-address");
+    var postLocation = document.getElementById("post-location");
+
+    var mapData = {
+      currentLocation: null,
+      mapOptions: null,
+      map: null,
+      marker: null,
+      geocoder: null
+    };
+
+    var createMap = function() {
+      mapData.geocoder = new google.maps.Geocoder();
+      mapData.currentLocation = new google.maps.LatLng(12.9667, 77.5667);
+      mapData.mapOptions = {
+        zoom: 16,
+        center: mapData.currentLocation
+      };
+      mapData.map = new google.maps.Map(mapElement, mapData.mapOptions);
+      mapData.marker = new google.maps.Marker({
+        position: new google.maps.LatLng(0, 0),
+        map: mapData.map,
+        title: "You're here!"
+      });
+    };
+
+    google.maps.event.addDomListener(window, "load", createMap);
+
+    postLocation.onclick = function() {
+      console.log("Click event fired");
+      fetchLocation(dashElement, mapData, addressElement);
+      return false;
+    };
+  </script>
+</html>

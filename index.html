@@ -18,6 +18,9 @@
       <br>
       <div class="clear-float" id="map-location">
         <h2> Map Location </h2>
+        <p>
+          Address: <span id="geocoder-address"></span>
+        </p>
         <div id="map-canvas"></div>
       </div>
     </div>
@@ -25,6 +28,7 @@
   <script type="text/javascript">
     var dashElement = document.getElementById("status-board");
     var mapElement = document.getElementById("map-canvas");
+    var addressElement = document.getElementById("geocoder-address");
     var postLocation = document.getElementById("post-location");
 
     var mapData = {
@@ -54,7 +58,7 @@
 
     postLocation.onclick = function() {
       console.log("Click event fired");
-      fetchLocation(dashElement, mapData);
+      fetchLocation(dashElement, mapData, addressElement);
       return false;
     };
   </script>

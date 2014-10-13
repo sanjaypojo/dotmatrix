@@ -1,4 +1,4 @@
-var fetchLocation = function (dashElement, mapData) {
+var fetchLocation = function (dashElement, mapData, addressElement) {
 
   var updateStatus = function(alertObj) {
     var alertTable = "<table>";
@@ -18,7 +18,7 @@ var fetchLocation = function (dashElement, mapData) {
     mapData.geocoder.geocode({'latLng': mapData.currentLocation}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         if (results[1]) {
-          console.log(results[1].formatted_address);
+          addressElement.innerHTML = results[1].formatted_address;
         }
         else {
           console.log("Fail");

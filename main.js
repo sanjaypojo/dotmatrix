@@ -1,7 +1,12 @@
 var fetchLocation = function (dashElement, mapData) {
 
-  var updateStatus = function(alertText) {
-    dashElement.innerHTML = alertText;
+  var updateStatus = function(alertObj) {
+    var alertTable = "<table>";
+    for (key in alertObj) {
+      alertTable += "<tr><td>" + key + "</td><td>" + alertObj[key] + "</td></tr>";
+    }
+    alertTable += "</table>"
+    dashElement.innerHTML = alertTable;
   };
 
   var updateMap = function(latitude, longitude) {
@@ -12,13 +17,13 @@ var fetchLocation = function (dashElement, mapData) {
 
   var success = function(location) {
     console.log("Success");
-    updateStatus(JSON.stringify(location.coords));
+    updateStatus(location.coords);
     updateMap(location.coords.latitude, location.coords.longitude);
   };
 
   var failure = function(err) {
     console.log("Failure");
-    updateStatus(JSON.stringify(err));
+    updateStatus(err);
   };
 
   if (navigator.geolocation) {

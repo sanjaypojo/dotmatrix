@@ -1,6 +1,7 @@
 var fetchLocation = function (dashElement, mapData, addressElement) {
 
   var updateStatus = function(alertObj) {
+    console.log(alertObj);
     var alertTable = "<table>";
     for (var key in alertObj) {
       if (alertObj[key]) {
@@ -30,8 +31,22 @@ var fetchLocation = function (dashElement, mapData, addressElement) {
     });
   };
 
+  var postLocationToServer = function(location) {
+    var xhr = new XMLHttpRequest();
+    var locationData = encodeURIComponent(JSON.stringify(location));
+    var getUrl = "post-location?data=" + locationData;
+    xhr.open("GET", getUrl, true);
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        console.log("Data posted successfully");
+      }
+    };
+    xhr.send();
+  };
+
   var success = function(location) {
     console.log("Success");
+    postLocationToServer(location);
     updateStatus(location.coords);
     updateMap(location.coords.latitude, location.coords.longitude);
   };
